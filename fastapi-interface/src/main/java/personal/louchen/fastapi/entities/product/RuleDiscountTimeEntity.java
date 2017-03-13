@@ -3,15 +3,16 @@ package personal.louchen.fastapi.entities.product;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 礼物规则
+ * 限时折扣规则
  * Created by louchen on 2017/3/13.
  */
 @Entity
-@Table(name = "ai_rule_gift")
-public class RuleGiftEntity {
+@Table(name = "ai_rule_discount_time")
+public class RuleDiscountTimeEntity {
 
 
     //#####################通用属性###########################
@@ -54,8 +55,8 @@ public class RuleGiftEntity {
     @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
     private String name;
 
-    @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
-    private String needProductItemCount;
+    @Column(name = "DISCOUNT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'折扣金额'")
+    private BigDecimal discountPrice;
 
     @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
     protected Date effectiveTimeStart;

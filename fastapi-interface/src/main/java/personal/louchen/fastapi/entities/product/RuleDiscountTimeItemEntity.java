@@ -6,13 +6,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 礼物规则
+ * 限时折扣规则行信息
  * Created by louchen on 2017/3/13.
  */
 @Entity
-@Table(name = "ai_rule_gift")
-public class RuleGiftEntity {
-
+@Table(name = "ai_rule_discount_time_item")
+public class RuleDiscountTimeItemEntity {
 
     //#####################通用属性###########################
     @Id
@@ -51,16 +50,13 @@ public class RuleGiftEntity {
     private long version = 0;//数据版本
     //########################################################
 
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
-    private String name;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "id")
+    private ProductEntity productEntity;
 
-    @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
-    private String needProductItemCount;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RULE_DISCOUNT_TIME_ID", referencedColumnName = "id")
+    private RuleDiscountTimeEntity ruleDiscountTimeEntity;
 
-    @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
-    protected Date effectiveTimeStart;
-
-    @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
-    protected Date effectiveTimeEnd;
 
 }

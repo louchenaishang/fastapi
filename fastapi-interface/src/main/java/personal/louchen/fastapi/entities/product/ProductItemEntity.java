@@ -63,6 +63,9 @@ public class ProductItemEntity {
     @Column(name = "STOCK_OCCUPY", nullable = false, columnDefinition = "int(10) default 0 comment'占用库存'")
     private Integer stockOccupy;
 
+    @Column(name = "STOCK_REMAIN", nullable = false, columnDefinition = "int(10) default 0 comment'剩余库存'")
+    private Integer stockRemain;
+
     @Column(name = "SALED_COUNT", nullable = false, columnDefinition = "int(10) default 0 comment'已销售数量'")
     private Integer saledCount;
 
@@ -86,5 +89,9 @@ public class ProductItemEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RULE_ADDITION_ID", referencedColumnName = "id")
     private RuleAdditionEntity ruleAdditionEntity;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RULE_GIFT_ID", referencedColumnName = "id")
+    private RuleGiftEntity ruleGiftEntity;
 
 }

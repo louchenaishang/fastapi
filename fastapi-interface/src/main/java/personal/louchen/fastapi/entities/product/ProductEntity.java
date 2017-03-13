@@ -116,8 +116,4 @@ public class ProductEntity {
     @JoinColumn(name = "RULE_PERIOD_ID", referencedColumnName = "id")
     private RulePeriodEntity rulePeriodEntity;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RULE_GIFT_ID", referencedColumnName = "id")
-    private RuleGiftEntity ruleGiftEntity;
-
 }
