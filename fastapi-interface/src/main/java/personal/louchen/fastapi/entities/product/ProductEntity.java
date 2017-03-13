@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 商品头信息
+ * 商品头信息1
  * Created by louchen on 2017/3/6.
  */
 @Entity
