@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fastapi</groupId>
+    <artifactId>fastapi</artifactId>
+    <packaging>pom</packaging>
+    <!-- 这个父项目只是负责maven打包更方便,不用更改版本号 -->
+    <version>1.0.0</version>
+
+    <modules>
+        <!-- 定义接口 定义枚举 定义entity 定义vo -->
+        <module>fastapi-interface</module>
+        <!-- 接口的具体实现 -->
+        <module>fastapi-service</module>
+        <!-- 对外暴露http协议的接口 -->
+        <module>fastapi-server</module>
+        <!-- 开发util的集合模块 -->
+        <module>fastapi-framework</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.jdk>1.8</version.jdk>
+        <!-- modules -->
+        <!-- 模块版本号升级在这里 -->
+        <version.fastapi-framework>1.0.0</version.fastapi-framework>
+        <version.fastapi-interface>1.0.0</version.fastapi-interface>
+        <version.fastapi-service>1.0.0</version.fastapi-service>
+        <version.fastapi-server>1.0.0</version.fastapi-server>
+        <!-- junit -->
+        <junit.version>4.12</junit.version>
+        <!-- validation-api -->
+        <validation-api.version>1.1.0.Final</validation-api.version>
+        <!-- jetty -->
+        <version.jetty>8.1.19.v20160209</version.jetty>
+        <version.jetty.scope>compile</version.jetty.scope>
+        <!-- aspectj -->
+        <aspectj.version>1.8.2</aspectj.version>
+        <!-- spring版本号 -->
+        <spring.version>4.2.0.RELEASE</spring.version>
+        <spring-orm.version>4.2.0.RELEASE</spring-orm.version>
+        <spring-redis.version>1.6.0.RELEASE</spring-redis.version>
+        <spring-messaging.version>4.1.6.RELEASE</spring-messaging.version>
+        <spring-jpa.version>1.10.2.RELEASE</spring-jpa.version>
+        <!-- mysql驱动包 -->
+        <mysql.version>5.1.29</mysql.version>
+        <!-- hibernate版本号 -->
+        <hibernate.version>4.3.8.Final</hibernate.version>
+        <hibernate-validator.version>4.3.2.Final</hibernate-validator.version>
+        <!-- mybatis版本号 -->
+        <mybatis.version>3.2.4</mybatis.version>
+        <mybatis-spring.version>1.2.2</mybatis-spring.version>
+        <!-- log4j日志文件管理包版本 -->
+        <slf4j.version>1.6.6</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+        <logback-classic.version>1.1.7</logback-classic.version>
+        <logback-ext-spring.version>0.1.2</logback-ext-spring.version>
+        <jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version>
+        <logstash-logback-encoder.version>4.7</logstash-logback-encoder.version>
+        <!-- commons -->
+        <commons-collections.version>3.2</commons-collections.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-fileupload.version>1.2.2</commons-fileupload.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <commons-beanutils.version>1.9.2</commons-beanutils.version>
+        <!-- other -->
+        <druid.version>1.0.24</druid.version>
+        <fastjson.version>1.2.16</fastjson.version>
+        <jedis.version>2.9.0</jedis.version>
+        <zookeeper.version>3.4.6</zookeeper.version>
+        <curator.version>2.7.1</curator.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- 子模块也都是用1.8编译 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${version.jdk}</source>
+                    <target>${version.jdk}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

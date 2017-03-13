@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fastapi</artifactId>
+        <groupId>fastapi</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fastapi-server</artifactId>
+    <packaging>war</packaging>
+    <version>${version.fastapi-server}</version>
+
+    <properties>
+
+    </properties>
+    <dependencies>
+        <!-- modules -->
+        <dependency>
+            <groupId>fastapi</groupId>
+            <artifactId>fastapi-service</artifactId>
+            <version>${version.fastapi-service}</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>product</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <target>
+                                        <copy todir="${basedir}/target/classes/conf" overwrite="true">
+                                            <fileset dir="${basedir}/src/main/resources/distribute/product/"/>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.7</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <target>
+                                        <copy todir="${basedir}/target/classes/conf" overwrite="true">
+                                            <fileset dir="${basedir}/src/main/resources/distribute/test/"/>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <warSourceExcludes>${basedir}/src/main/resources/distribute/**</warSourceExcludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${version.jdk}</source>
+                    <target>${version.jdk}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

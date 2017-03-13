@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	">
+
+    <!-- 扫描service包 -->
+    <context:component-scan base-package="personal.louchen.fastapi.services">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- 定义 Autowired 自动注入 bean -->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <!-- 拦截器方式配置事物 -->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 开启事务 -->
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="modify*" propagation="REQUIRED"/>
+            <tx:method name="edit*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="remove*" propagation="REQUIRED"/>
+            <tx:method name="do*" propagation="REQUIRED"/>
+            <tx:method name="clear*" propagation="REQUIRED"/>
+            <tx:method name="confirm*" propagation="REQUIRED"/>
+            <tx:method name="generate*" propagation="REQUIRED"/>
+            <tx:method name="import*" rollback-for="java.lang.Exception"
+                       propagation="REQUIRED"/>
+
+            <!-- 不开启事务 -->
+            <tx:method name="get*" propagation="SUPPORTS"/>
+            <tx:method name="find*" propagation="SUPPORTS"/>
+            <tx:method name="query*" propagation="SUPPORTS"/>
+            <tx:method name="load*" propagation="SUPPORTS"/>
+            <tx:method name="search*" propagation="SUPPORTS"/>
+            <tx:method name="datagrid*" propagation="SUPPORTS"/>
+
+            <!-- 默认开启事务 -->
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- AOP 事务切面 -->
+    <aop:config>
+        <aop:pointcut id="transactionPointcut" expression="execution(* personal.louchen.fastapi.services..*.*(..))"/>
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
+    </aop:config>
+
+</beans>

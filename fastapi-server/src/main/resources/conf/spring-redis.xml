@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="100"/> <!-- 控制一个pool可分配多少个jedis实例 -->
+        <property name="maxIdle" value="20"/>   <!-- 控制一个pool最多有多少个状态为idle(空闲)的jedis实例 -->
+        <property name="maxWaitMillis"
+                  value="2000"/>  <!-- 表示当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException -->
+        <property name="testOnBorrow"
+                  value="true"/> <!-- 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的 -->
+    </bean>
+
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${redis.server}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="poolConfig" ref="poolConfig"/>
+        <property name="password" value="${redis.password}"/>
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+    <context:component-scan base-package="personal.louchen.fastapi.daos.rdao" />
+</beans>
