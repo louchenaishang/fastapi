@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 商品头信息1
+ * 商品头信息
  * Created by louchen on 2017/3/6.
  */
 @Entity
@@ -119,11 +119,5 @@ public class ProductEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RULE_GIFT_ID", referencedColumnName = "id")
     private RuleGiftEntity ruleGiftEntity;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RULE_ADDITION_ID", referencedColumnName = "id")
-    private RuleAdditionEntity ruleAdditionEntity;
-
-
 
 }

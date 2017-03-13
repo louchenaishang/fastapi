@@ -83,5 +83,8 @@ public class ProductItemEntity {
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "id")
     private ProductEntity productEntity;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RULE_ADDITION_ID", referencedColumnName = "id")
+    private RuleAdditionEntity ruleAdditionEntity;
 
 }
