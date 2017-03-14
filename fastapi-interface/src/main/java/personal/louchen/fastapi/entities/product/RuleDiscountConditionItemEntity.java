@@ -51,9 +51,6 @@ public class RuleDiscountConditionItemEntity {
     private long version = 0;//数据版本
 
     //########################################################
-    @Column(name = "DISCOUNT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'限时折扣金额'")
-    private BigDecimal discountPrice;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_ITEM_ID", referencedColumnName = "id")
     private ProductItemEntity productItemEntity;
