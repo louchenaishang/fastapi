@@ -51,8 +51,8 @@ public class RuleGiftItemEntity {
     //########################################################
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "id")
-    private ProductEntity productEntity;
+    @JoinColumn(name = "GIFT_PRODUCT_ID", referencedColumnName = "id")
+    private ProductEntity giftProductEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RULE_GIFT_ID", referencedColumnName = "id")

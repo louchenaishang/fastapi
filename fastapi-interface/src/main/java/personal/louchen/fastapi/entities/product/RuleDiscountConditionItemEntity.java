@@ -52,8 +52,8 @@ public class RuleDiscountConditionItemEntity {
 
     //########################################################
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ITEM_ID", referencedColumnName = "id")
-    private ProductItemEntity productItemEntity;
+    @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
+    private ProductItemEntity saleProductItemEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RULE_DISCOUNT_CONDITION_ID", referencedColumnName = "id")

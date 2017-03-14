@@ -51,8 +51,8 @@ public class RuleAdditionItemEntity {
     //########################################################
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "id")
-    private ProductEntity productEntity;
+    @JoinColumn(name = "ADDITION_PRODUCT_ID", referencedColumnName = "id")
+    private ProductEntity additionProductEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RULE_ADDITION_ID", referencedColumnName = "id")

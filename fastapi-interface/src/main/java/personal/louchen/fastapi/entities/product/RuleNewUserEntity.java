@@ -1,17 +1,18 @@
-package personal.louchen.fastapi.entities.order;
+package personal.louchen.fastapi.entities.product;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 订单折扣规则
- * Created by louchen on 2017/3/13.
+ * 新用户奖励规则
+ * Created by louchen on 2017/3/14.
  */
 @Entity
-@Table(name = "ai_rule_order")
-public class RuleOrderEntity {
+@Table(name = "ai_rule_new_user")
+public class RuleNewUserEntity {
 
 
     //#####################通用属性###########################
@@ -54,10 +55,18 @@ public class RuleOrderEntity {
     @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
     private String name;
 
+    @Column(name = "DISCOUNT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'折扣金额'")
+    private BigDecimal discountPrice;//新用户奖励折扣
+
     @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
     protected Date effectiveTimeStart;
 
     @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
     protected Date effectiveTimeEnd;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GIFT_PRODUCT_ID", referencedColumnName = "id")
+    private ProductEntity giftProductEntity;//新用户奖励赠品
+
 
 }
