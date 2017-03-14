@@ -7,13 +7,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 限时折扣规则
+ * 满减规则行信息
  * Created by louchen on 2017/3/13.
  */
 @Entity
-@Table(name = "ai_rule_discount_time")
-public class RuleDiscountTimeEntity {
-
+@Table(name = "ai_rule_discount_condition_item")
+public class RuleDiscountConditionItemEntity {
 
     //#####################通用属性###########################
     @Id
@@ -50,18 +49,18 @@ public class RuleDiscountTimeEntity {
     @Version
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
+
     //########################################################
-
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
-    private String name;
-
     @Column(name = "DISCOUNT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'限时折扣金额'")
     private BigDecimal discountPrice;
 
-    @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
-    protected Date effectiveTimeStart;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ITEM_ID", referencedColumnName = "id")
+    private ProductItemEntity productItemEntity;
 
-    @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
-    protected Date effectiveTimeEnd;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RULE_DISCOUNT_CONDITION_ID", referencedColumnName = "id")
+    private RuleDiscountConditionEntity ruleDiscountConditionEntity;
+
 
 }

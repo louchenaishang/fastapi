@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 限时折扣规则
+ * 满减规则
  * Created by louchen on 2017/3/13.
  */
 @Entity
-@Table(name = "ai_rule_discount_time")
-public class RuleDiscountTimeEntity {
+@Table(name = "ai_rule_discount_condition")
+public class RuleDiscountConditionEntity {
 
 
     //#####################通用属性###########################
@@ -55,8 +55,12 @@ public class RuleDiscountTimeEntity {
     @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
     private String name;
 
-    @Column(name = "DISCOUNT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'限时折扣金额'")
+    @Column(name = "DISCOUNT_CONDITION", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'满减金额条件'")
+    private BigDecimal discountCondition;
+
+    @Column(name = "DISCOUNT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'满减金额折扣'")
     private BigDecimal discountPrice;
+
 
     @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
     protected Date effectiveTimeStart;
