@@ -60,8 +60,14 @@ public class TicketCouponEntity {
     @Column(name = "BUILD_TYPE", columnDefinition = "int(2) DEFAULT NULL COMMENT '生成方式(1自动生成2.倒码入库)'")
     private Integer buildType;
 
-    @Column(name = "COUNT", columnDefinition = "int(10) DEFAULT NULL COMMENT '数量'")
+    @Column(name = "COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '数量'")
     private Integer count;
+
+    @Column(name = "USE_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已使用数量'")
+    private Integer useCount;
+
+    @Column(name = "SEND_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已领取的数量'")
+    private Integer sendCount;
 
     @Column(name = "PRICE", scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'抵扣金额'")
     private BigDecimal price;
@@ -111,8 +117,5 @@ public class TicketCouponEntity {
     @Column(name = "DISPLAY_NAME", nullable = false, columnDefinition = "varchar(255) comment'显示名称'")
     private String displayName;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SALE_PRODUCT_ID", referencedColumnName = "id")
-    private ProductEntity saleProductEntity;
 
 }
