@@ -52,11 +52,11 @@ public class GroupPurchaseEntity {
     @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'团购名称'")
     private String name;
 
-    @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
-    protected Date effectiveTimeStart;
+    @Column(name = "BEGIN_TIME", columnDefinition = "datetime comment'有效期开始时间'")
+    protected Date beginTime;
 
-    @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
-    protected Date effectiveTimeEnd;
+    @Column(name = "END_TIME", columnDefinition = "datetime comment'有效期结束时间'")
+    protected Date endTime;
 
     @Column(name = "ENABLE_HINT", nullable = true, columnDefinition = "int(1) default 0 comment'开启凑团提示'")
     private boolean enableHint;

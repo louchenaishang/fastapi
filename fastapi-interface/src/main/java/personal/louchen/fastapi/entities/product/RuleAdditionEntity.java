@@ -54,7 +54,4 @@ public class RuleAdditionEntity {
     @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
     private String name;
 
-    @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
-    private String needProductItemCount;
-
 }

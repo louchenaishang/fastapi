@@ -3,6 +3,7 @@ package personal.louchen.fastapi.entities.product;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -54,8 +55,9 @@ public class RuleGiftEntity {
     @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
     private String name;
 
-    @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
-    private String needProductItemCount;
+    @Column(name = "NEED_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
+    private String needCount;
 
-
+    @Column(name = "NEED_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'满足条件,买满多少金额才赠送'")
+    private BigDecimal needPrice;
 }

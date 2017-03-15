@@ -47,9 +47,6 @@ public class OrderEntity {
     @Column(name = "TYPE", nullable = false, updatable = false, columnDefinition = "int(1) comment'订单类型,1订阅鲜花单品 2订阅鲜花混搭 3快递 4闪购'")
     private int type;//订单类型,1订阅鲜花单品 2订阅鲜花混搭 3快递 4闪购
 
-//    @Column(name = "USER_ID", nullable = false, updatable = false)
-//    private String userId;//用户id外键
-
     @Column(name = "CREATE_TIME", nullable = false, updatable = false, columnDefinition = "datetime comment'订单创建时间'")
     private Date createTime;//订单创建时间
 

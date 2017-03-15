@@ -1,17 +1,19 @@
-package personal.louchen.fastapi.entities.product;
+package personal.louchen.fastapi.entities.ticket;
 
 import org.hibernate.annotations.GenericGenerator;
+import personal.louchen.fastapi.entities.product.ProductEntity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 活动信息
+ * 优惠券行信息
  * Created by louchen on 2017/3/14.
  */
 @Entity
-@Table(name = "ai_activity")
-public class ActivityEntity {
+@Table(name = "ai_ticket_coupon_item")
+public class TicketCouponItemEntity {
 
     //#####################通用属性###########################
     @Id
@@ -29,12 +31,6 @@ public class ActivityEntity {
     @Column(name = "UPDATE_TIME", columnDefinition = "datetime comment'更新时间'")
     protected Date updateTime;//更新时间
 
-    @Column(name = "CREATE_USER", columnDefinition = "varchar(255) comment'创建人id或者名称'")
-    protected String createUser;//创建人id或者名称
-
-    @Column(name = "UPDATE_USER", columnDefinition = "varchar(255) comment'更新人id或者名称'")
-    protected String updateUser;//更新人id或者名称
-
     @PrePersist
     public void prePersist() {
         createTime = updateTime = new Date();
@@ -49,14 +45,23 @@ public class ActivityEntity {
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'活动名称'")
+    @Column(name = "COUPON_CODE", nullable = false,unique = true, columnDefinition = "varchar(255) comment'优惠码code'")
     private String name;
 
-    @Column(name = "BEGIN_TIME", columnDefinition = "datetime comment'有效期开始时间'")
-    protected Date beginTime;
+    @Column(name = "GET_USER", nullable = false,unique = true, columnDefinition = "varchar(255) comment'领取用户id'")
+    private String getUser;
 
-    @Column(name = "END_TIME", columnDefinition = "datetime comment'有效期结束时间'")
-    protected Date endTime;
+    @Column(name = "GET_TIME", columnDefinition = "datetime comment'领取时间'")
+    protected Date getTime;
 
+    @Column(name = "STATE",  columnDefinition = "int(2) DEFAULT 0 COMMENT '0：生成 1：已下载 2：已使用 3:使用中（占用）'")
+    private Integer state;
+
+    @Column(name = "GET_STATE",  columnDefinition = "int(2) DEFAULT 0 COMMENT '获取状态 0 ：未领取 1 ：已领取'")
+    private Integer getState;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TICKET_COUPON_ID", referencedColumnName = "id")
+    private TicketCouponEntity ticketCouponEntity;
 
 }
