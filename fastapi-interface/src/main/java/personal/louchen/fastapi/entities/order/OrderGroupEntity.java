@@ -1,6 +1,7 @@
 package personal.louchen.fastapi.entities.order;
 
 import org.hibernate.annotations.GenericGenerator;
+import personal.louchen.fastapi.entities.channel.ChannelEntity;
 import personal.louchen.fastapi.entities.user.UserEntity;
 
 import javax.persistence.*;
@@ -38,9 +39,6 @@ public class OrderGroupEntity {
     @Column(name = "CREATE_TIME", nullable = true, columnDefinition = "datetime comment '创建时间'")
     private Date createTime;
 
-    @Column(name = "CHANNEL", nullable = false, updatable = false, columnDefinition = "varchar(255) comment '渠道,爱尚商城官网、爱尚微商城、爱尚app、天猫、京东、一号店'")
-    private String channel;//渠道,爱尚商城官网、爱尚微商城、爱尚app、天猫、京东、一号店,标识订单来源渠道
-
     @Column(name = "STATUS", nullable = false, columnDefinition = "int(1) comment '订单组状态,0取消、1未付款、2已付款'")
     private int status;//订单组状态,0取消、1未付款、2已付款
 
@@ -53,7 +51,7 @@ public class OrderGroupEntity {
     @Column(name = "REFUND_AMOUNT", nullable = false, scale = 2, updatable = true, columnDefinition = "decimal(19,2) comment'已退款金额'")
     private BigDecimal refundAmount = BigDecimal.ZERO;//冗余已退款金额
 
-
-    //#########特殊的一些业务字段
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CHANNEL_ID", referencedColumnName = "id")
+    private ChannelEntity channelEntity;
 }
