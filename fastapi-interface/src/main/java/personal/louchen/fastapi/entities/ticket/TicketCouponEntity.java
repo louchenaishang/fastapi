@@ -66,8 +66,8 @@ public class TicketCouponEntity {
     @Column(name = "USE_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已使用数量'")
     private Integer useCount;
 
-    @Column(name = "SEND_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已领取的数量'")
-    private Integer sendCount;
+    @Column(name = "GET_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已领取的数量'")
+    private Integer getCount;
 
     @Column(name = "PRICE", scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'抵扣金额'")
     private BigDecimal price;

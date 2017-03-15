@@ -47,8 +47,8 @@ public class TicketCouponProductEntity {
     @Column(name = "USE_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已使用数量'")
     private Integer useCount;
 
-    @Column(name = "SEND_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已领取的数量'")
-    private Integer sendCount;
+    @Column(name = "GET_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已领取的数量'")
+    private Integer getCount;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TICKET_COUPON_ID", referencedColumnName = "id")
