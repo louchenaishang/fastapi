@@ -1,19 +1,20 @@
 package personal.louchen.fastapi.entities.ticket;
 
+
 import org.hibernate.annotations.GenericGenerator;
-import personal.louchen.fastapi.entities.product.ProductEntity;
+import personal.louchen.fastapi.entities.product.ProductItemEntity;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
+
 /**
- * 优惠券行信息
- * Created by louchen on 2017/3/14.
+ * 兑换码商品信息,一对多可兑换的商品
+ * Created by louchen on 2017/3/15.
  */
 @Entity
-@Table(name = "ai_ticket_coupon_item")
-public class TicketCouponItemEntity {
+@Table(name = "ai_ticket_exchange_product")
+public class TicketExchangeProductEntity implements java.io.Serializable {
 
     //#####################通用属性###########################
     @Id
@@ -45,23 +46,17 @@ public class TicketCouponItemEntity {
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @Column(name = "STATE",columnDefinition = "int(2) DEFAULT 0 COMMENT '状态(0.未领取1.已领取2.使用中3.已使用)'")
-    private Integer state;
+    @Column(name = "USE_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已使用数量'")
+    private Integer useCount;
 
-    @Column(name = "COUPON_CODE", nullable = false,unique = true, columnDefinition = "varchar(255) comment'优惠码code'")
-    private String name;
-
-    @Column(name = "GET_USER_ID", columnDefinition = "varchar(255) comment'获取用户id'")
-    private String getUserId;
-
-    @Column(name = "GET_TIME", columnDefinition = "datetime comment'领取时间'")
-    protected Date getTime;
-
-    @Column(name = "USE_TIME", columnDefinition = "datetime comment'使用时间'")
-    protected Date useTime;
+    @Column(name = "GET_COUNT", columnDefinition = "int(10) DEFAULT 0 COMMENT '已获取数量'")
+    private Integer getCount;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TICKET_COUPON_ID", referencedColumnName = "id")
-    private TicketCouponEntity ticketCouponEntity;
+    @JoinColumn(name = "TICKET_EXCHANGE_ID", referencedColumnName = "id")
+    private TicketExchangeEntity ticketExchangeEntity;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
+    private ProductItemEntity saleProductItemEntity;
 }

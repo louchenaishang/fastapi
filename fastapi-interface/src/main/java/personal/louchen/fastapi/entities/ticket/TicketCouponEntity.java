@@ -51,7 +51,7 @@ public class TicketCouponEntity {
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'活动名称'")
+    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'名称'")
     private String name;
 
     @Column(name = "TYPE", columnDefinition = "int(2) DEFAULT NULL COMMENT '优惠码类型（1一卡一码2.通用码)'")
@@ -101,9 +101,6 @@ public class TicketCouponEntity {
 
     @Column(name = "NOTE", columnDefinition = "text comment'使用说明'")
     private String note;
-
-    @Column(name = "STATE", columnDefinition = "int(2) DEFAULT NULL COMMENT '0：生成 1：已下载 2：已使用'")
-    private Integer state;
 
     @Column(name = "CREAT_STATE", columnDefinition = "int(2) DEFAULT NULL COMMENT '0。生成中1.已生成2生成失败)'")
     private Integer creatState;
