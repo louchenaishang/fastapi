@@ -1,4 +1,4 @@
-package personal.louchen.fastapi.entities.sku;
+package personal.louchen.fastapi.entities.product;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -6,11 +6,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by louchen on 2017/3/9.
+ * 活动销售商品信息
+ * Created by louchen on 2017/3/13.
  */
 @Entity
-@Table(name = "ai_sku_property")
-public class SkuPropertyEntity {
+@Table(name = "ai_activity_product_item")
+public class ActivityProductItemEntity {
 
     //#####################通用属性###########################
     @Id
@@ -49,22 +50,28 @@ public class SkuPropertyEntity {
     private long version = 0;//数据版本
     //########################################################
 
-    @Column(name = "VALUE", nullable = false, columnDefinition = "varchar(255) comment'属性值'")
-    private String value;
-
-    @Column(name = "SORTS", nullable = false, columnDefinition = "int(10) comment'排序值'")
-    private Integer sorts;
-
-    @Column(name = "VISIBLE", nullable = false, columnDefinition = "int(10) comment'是否可见'")
-    private boolean visible;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACTIVITY_ID", referencedColumnName = "id")
+    private ActivityEntity activityEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SKU_CATEGORY_PROPERTY_ID", referencedColumnName = "id")
-    private SkuCategoryPropertyEntity skuCategoryPropertyEntity;
+    @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
+    private ProductItemEntity saleProductItemEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SKU_ID", referencedColumnName = "id")
-    private SkuEntity skuEntity;
+    @JoinColumn(name = "RULE_DISCOUNT_TIME_ID", referencedColumnName = "id")
+    private RuleDiscountTimeEntity ruleDiscountTimeEntity;//限时折扣规则
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RULE_DISCOUNT_CONDITION_ID", referencedColumnName = "id")
+    private RuleDiscountConditionEntity ruleDiscountConditionEntity;//满减规则
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RULE_ADDITION_ID", referencedColumnName = "id")
+    private RuleAdditionEntity ruleAdditionEntity;//加价购规则
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RULE_GIFT_ID", referencedColumnName = "id")
+    private RuleGiftEntity ruleGiftEntity;//
 
 }

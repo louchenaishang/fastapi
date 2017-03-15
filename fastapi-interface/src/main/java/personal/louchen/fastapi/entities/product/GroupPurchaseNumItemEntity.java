@@ -3,15 +3,16 @@ package personal.louchen.fastapi.entities.product;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 限时折扣规则行信息
- * Created by louchen on 2017/3/13.
+ * 团购信息,几人团行详情
+ * Created by louchen on 2017/3/14.
  */
 @Entity
-@Table(name = "ai_rule_discount_time_item")
-public class RuleDiscountTimeItemEntity {
+@Table(name = "ai_group_purchase_num_item")
+public class GroupPurchaseNumItemEntity {
 
     //#####################通用属性###########################
     @Id
@@ -49,14 +50,15 @@ public class RuleDiscountTimeItemEntity {
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
     //########################################################
+    @Column(name = "PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'团购单价'")
+    private BigDecimal price;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SALE_PRODUCT_ID", referencedColumnName = "id")
-    private ProductEntity saleProductEntity;
+    @JoinColumn(name = "GROUP_PURCHASE_NUM_ID", referencedColumnName = "id")
+    private GroupPurchaseNumEntity groupPurchaseNumEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RULE_DISCOUNT_TIME_ID", referencedColumnName = "id")
-    private RuleDiscountTimeEntity ruleDiscountTimeEntity;
-
+    @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
+    private ProductItemEntity saleProductItemEntity;
 
 }

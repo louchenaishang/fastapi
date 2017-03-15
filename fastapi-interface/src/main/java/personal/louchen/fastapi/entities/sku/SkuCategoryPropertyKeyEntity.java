@@ -1,7 +1,6 @@
 package personal.louchen.fastapi.entities.sku;
 
 import org.hibernate.annotations.GenericGenerator;
-import personal.louchen.fastapi.entities.property.PropertyEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,8 +9,8 @@ import java.util.Date;
  * Created by louchen on 2017/3/9.
  */
 @Entity
-@Table(name = "ai_sku_category_property")
-public class SkuCategoryPropertyEntity {
+@Table(name = "ai_sku_category_property_key")
+public class SkuCategoryPropertyKeyEntity {
 
     //#####################通用属性###########################
     @Id
@@ -51,8 +50,8 @@ public class SkuCategoryPropertyEntity {
     //########################################################
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROPERTY_ID", referencedColumnName = "id")
-    private PropertyEntity propertyEntity;
+    @JoinColumn(name = "SKU_PROPERTY_KEY_ID", referencedColumnName = "id")
+    private SkuPropertyKeyEntity skuPropertyKeyEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SKU_CATEGORY_ID", referencedColumnName = "id")

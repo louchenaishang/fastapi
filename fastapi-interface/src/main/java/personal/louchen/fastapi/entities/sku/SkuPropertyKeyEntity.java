@@ -1,4 +1,4 @@
-package personal.louchen.fastapi.entities.property;
+package personal.louchen.fastapi.entities.sku;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,8 +9,8 @@ import java.util.Date;
  * Created by louchen on 2017/3/9.
  */
 @Entity
-@Table(name = "ai_property")
-public class PropertyEntity {
+@Table(name = "ai_sku_property_key")
+public class SkuPropertyKeyEntity {
 
     //#####################通用属性###########################
     @Id

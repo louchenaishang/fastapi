@@ -3,16 +3,15 @@ package personal.louchen.fastapi.entities.product;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 满减规则行信息
- * Created by louchen on 2017/3/13.
+ * 活动信息
+ * Created by louchen on 2017/3/14.
  */
 @Entity
-@Table(name = "ai_rule_discount_condition_item")
-public class RuleDiscountConditionItemEntity {
+@Table(name = "ai_activity")
+public class ActivityEntity {
 
     //#####################通用属性###########################
     @Id
@@ -49,15 +48,15 @@ public class RuleDiscountConditionItemEntity {
     @Version
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
-
     //########################################################
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
-    private ProductItemEntity saleProductItemEntity;
+    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'活动名称'")
+    private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RULE_DISCOUNT_CONDITION_ID", referencedColumnName = "id")
-    private RuleDiscountConditionEntity ruleDiscountConditionEntity;
+    @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
+    protected Date effectiveTimeStart;
+
+    @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
+    protected Date effectiveTimeEnd;
 
 
 }

@@ -6,13 +6,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 加价购规则
- * Created by louchen on 2017/3/13.
+ * 团购信息,几人团
+ * Created by louchen on 2017/3/14.
  */
 @Entity
-@Table(name = "ai_rule_addition")
-public class RuleAdditionEntity {
-
+@Table(name = "ai_group_purchase_num")
+public class GroupPurchaseNumEntity {
 
     //#####################通用属性###########################
     @Id
@@ -51,10 +50,14 @@ public class RuleAdditionEntity {
     private long version = 0;//数据版本
     //########################################################
 
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
-    private String name;
+    @Column(name = "PERSON_NUM", nullable = true, columnDefinition = "int(10) default 2 comment'几人团'")
+    private Integer personNum;
 
-    @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
-    private String needProductItemCount;
+    @Column(name = "MINIMUM_NUM", nullable = true, columnDefinition = "int(10) default 1 comment'最低成团人数'")
+    private Integer minimumNum;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GROUP_PURCHASE_ID", referencedColumnName = "id")
+    private GroupPurchaseEntity groupPurchaseEntity;
 
 }

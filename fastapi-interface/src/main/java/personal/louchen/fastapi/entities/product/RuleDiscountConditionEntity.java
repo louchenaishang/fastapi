@@ -61,11 +61,4 @@ public class RuleDiscountConditionEntity {
     @Column(name = "DISCOUNT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'满减金额折扣'")
     private BigDecimal discountPrice;
 
-
-    @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
-    protected Date effectiveTimeStart;
-
-    @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
-    protected Date effectiveTimeEnd;
-
 }

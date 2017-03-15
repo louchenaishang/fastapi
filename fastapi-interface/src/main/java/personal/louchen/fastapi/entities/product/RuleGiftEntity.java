@@ -57,10 +57,5 @@ public class RuleGiftEntity {
     @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
     private String needProductItemCount;
 
-    @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
-    protected Date effectiveTimeStart;
-
-    @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
-    protected Date effectiveTimeEnd;
 
 }

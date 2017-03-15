@@ -1,4 +1,4 @@
-package personal.louchen.fastapi.entities.product;
+package personal.louchen.fastapi.entities.sku;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -6,13 +6,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 加价购规则
- * Created by louchen on 2017/3/13.
+ * Created by louchen on 2017/3/9.
  */
 @Entity
-@Table(name = "ai_rule_addition")
-public class RuleAdditionEntity {
-
+@Table(name = "ai_sku_property_value")
+public class SkuPropertyValueEntity {
 
     //#####################通用属性###########################
     @Id
@@ -51,10 +49,22 @@ public class RuleAdditionEntity {
     private long version = 0;//数据版本
     //########################################################
 
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
-    private String name;
+    @Column(name = "VALUE", nullable = false, columnDefinition = "varchar(255) comment'属性值'")
+    private String value;
 
-    @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
-    private String needProductItemCount;
+    @Column(name = "SORTS", nullable = false, columnDefinition = "int(10) comment'排序值'")
+    private Integer sorts;
+
+    @Column(name = "VISIBLE", nullable = false, columnDefinition = "int(10) comment'是否可见'")
+    private boolean visible;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SKU_CATEGORY_PROPERTY_KEY_ID", referencedColumnName = "id")
+    private SkuCategoryPropertyKeyEntity skuCategoryPropertyKeyEntity;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SKU_ID", referencedColumnName = "id")
+    private SkuEntity skuEntity;
+
 
 }

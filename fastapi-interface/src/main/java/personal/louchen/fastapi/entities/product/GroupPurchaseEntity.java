@@ -6,13 +6,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 加价购规则
- * Created by louchen on 2017/3/13.
+ * 团购信息
+ * Created by louchen on 2017/3/14.
  */
 @Entity
-@Table(name = "ai_rule_addition")
-public class RuleAdditionEntity {
-
+@Table(name = "ai_group_purchase")
+public class GroupPurchaseEntity {
 
     //#####################通用属性###########################
     @Id
@@ -50,11 +49,26 @@ public class RuleAdditionEntity {
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
+    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'团购名称'")
     private String name;
 
-    @Column(name = "NEED_PRODUCT_ITEM_COUNT", nullable = false, columnDefinition = "int(10) default 1 comment'满足条件,商品个数'")
-    private String needProductItemCount;
+    @Column(name = "EFFECTIVE_TIME_START", columnDefinition = "datetime comment'有效期开始时间'")
+    protected Date effectiveTimeStart;
+
+    @Column(name = "EFFECTIVE_TIME_END", columnDefinition = "datetime comment'有效期结束时间'")
+    protected Date effectiveTimeEnd;
+
+    @Column(name = "ENABLE_HINT", nullable = true, columnDefinition = "int(1) default 0 comment'开启凑团提示'")
+    private boolean enableHint;
+
+    @Column(name = "ENABLE_BUY_LIMIT", nullable = true, columnDefinition = "int(1) default 0 comment'开启限购'")
+    private boolean enableAddition;
+
+    @Column(name = "BUY_LIMIT", nullable = true, columnDefinition = "int(10) default 0 comment'限购数量'")
+    private Integer buyLimit;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SALE_PRODUCT_ID", referencedColumnName = "id")
+    private ProductEntity saleProductEntity;
 
 }
