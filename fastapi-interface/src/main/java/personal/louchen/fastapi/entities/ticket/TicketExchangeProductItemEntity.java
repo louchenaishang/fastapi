@@ -13,8 +13,8 @@ import java.util.Date;
  * Created by louchen on 2017/3/15.
  */
 @Entity
-@Table(name = "ai_ticket_exchange_product")
-public class TicketExchangeProductEntity implements java.io.Serializable {
+@Table(name = "ai_ticket_exchange_product_item")
+public class TicketExchangeProductItemEntity implements java.io.Serializable {
 
     //#####################通用属性###########################
     @Id
