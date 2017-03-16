@@ -48,6 +48,11 @@ public class SkuCategoryPropertyKeyEntity {
     @Column(name = "VERSION", nullable = false)
     private long version = 0;//数据版本
     //########################################################
+    @Column(name = "SORTS", nullable = false, columnDefinition = "int(10) comment'排序值'")
+    private Integer sorts;
+
+    @Column(name = "VISIBLE", nullable = false, columnDefinition = "int(10) comment'是否可见'")
+    private boolean visible;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SKU_PROPERTY_KEY_ID", referencedColumnName = "id")
