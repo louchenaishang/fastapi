@@ -94,12 +94,6 @@ public class ProductEntity {
     @Column(name = "ENABLE_PERIOD", nullable = true, columnDefinition = "int(1) default 0 comment'允许选择周期购规则'")
     private boolean enablePeriod;
 
-    @Column(name = "ENABLE_GIFT", nullable = true, columnDefinition = "int(1) default 0 comment'允许选择赠品规则'")
-    private boolean enableGift;
-
-    @Column(name = "ENABLE_ADDITION", nullable = true, columnDefinition = "int(1) default 0 comment'允许选择加价购规则'")
-    private boolean enableAddition;
-
     @Column(name = "PLAN_SEND_TIME", nullable = true, columnDefinition = "datetime comment'计划发货时间'")
     private Date planSendTime;
 
