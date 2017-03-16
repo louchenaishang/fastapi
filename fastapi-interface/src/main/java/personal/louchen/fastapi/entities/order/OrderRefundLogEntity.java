@@ -17,33 +17,33 @@ public class OrderRefundLogEntity {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "ID")
+    @Column(name = "id")
     protected String id;
 
-    @Column(name = "DELETED", columnDefinition = "int(1) default 0 comment'软删除标记'")
+    @Column(name = "deleted", columnDefinition = "int(1) default 0 comment'软删除标记'")
     protected Boolean deleted;
 
     @Version
-    @Column(name = "VERSION", nullable = false)
+    @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @JoinColumn(name = "ORDER_GROUP_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "order_group_id", referencedColumnName = "ID", nullable = false)
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private OrderGroupEntity orderGroupEntity;//订单id外键
 
-    @Column(name = "PAYMENT", nullable = false, updatable = false, columnDefinition = "int(1) comment'支付方式 1微信 2支付宝'")
+    @Column(name = "payment", nullable = false, updatable = false, columnDefinition = "int(1) comment'支付方式 1微信 2支付宝'")
     private int payment;//支付方式 1微信 2支付宝
 
-    @Column(name = "REFUND_TIME", nullable = false, updatable = false, columnDefinition = "datetime comment'支付时间'")
+    @Column(name = "refund_time", nullable = false, updatable = false, columnDefinition = "datetime comment'支付时间'")
     private Date refundTime;//退款时间
 
-    @Column(name = "REFUND_ACCOUNT", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'支付账户'")
+    @Column(name = "refund_account", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'支付账户'")
     private String refundAccount;//退款账户
 
-    @Column(name = "REFUND_AMOUNT", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'支付金额'")
+    @Column(name = "refund_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'支付金额'")
     private BigDecimal refundAmount;//退款金额
 
-    @Column(name = "OUT_TRADE_NO", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'外部系统交易单号,微信交易流水号、支付宝交易流水号'")
+    @Column(name = "out_trade_no", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'外部系统交易单号,微信交易流水号、支付宝交易流水号'")
     private String outTradeNo;//外部系统交易单号,微信交易流水号、支付宝交易流水号
 
 }

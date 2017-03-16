@@ -16,22 +16,22 @@ public class SkuCategoryPropertyKeyEntity {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "ID")
+    @Column(name = "id")
     protected String id;
 
-    @Column(name = "DELETED",columnDefinition = "int(1) default 0 comment'软删除标记'")
+    @Column(name = "deleted",columnDefinition = "int(1) default 0 comment'软删除标记'")
     protected Boolean deleted;
 
-    @Column(name = "CREATE_TIME", columnDefinition = "datetime comment'创建时间'")
+    @Column(name = "create_time", columnDefinition = "datetime comment'创建时间'")
     protected Date createTime;//创建时间
 
-    @Column(name = "UPDATE_TIME", columnDefinition = "datetime comment'更新时间'")
+    @Column(name = "update_time", columnDefinition = "datetime comment'更新时间'")
     protected Date updateTime;//更新时间
 
-    @Column(name = "CREATE_USER", columnDefinition = "varchar(255) comment'创建人id或者名称'")
+    @Column(name = "create_user", columnDefinition = "varchar(255) comment'创建人id或者名称'")
     protected String createUser;//创建人id或者名称
 
-    @Column(name = "UPDATE_USER", columnDefinition = "varchar(255) comment'更新人id或者名称'")
+    @Column(name = "update_user", columnDefinition = "varchar(255) comment'更新人id或者名称'")
     protected String updateUser;//更新人id或者名称
 
     @PrePersist
@@ -45,21 +45,21 @@ public class SkuCategoryPropertyKeyEntity {
     }
 
     @Version
-    @Column(name = "VERSION", nullable = false)
+    @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @Column(name = "SORTS", nullable = false, columnDefinition = "int(10) comment'排序值'")
+    @Column(name = "sorts", nullable = false, columnDefinition = "int(10) comment'排序值'")
     private Integer sorts;
 
-    @Column(name = "VISIBLE", nullable = false, columnDefinition = "int(10) comment'是否可见'")
+    @Column(name = "visible", nullable = false, columnDefinition = "int(10) comment'是否可见'")
     private boolean visible;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SKU_PROPERTY_KEY_ID", referencedColumnName = "id")
+    @JoinColumn(name = "sku_property_key_id", referencedColumnName = "id")
     private SkuPropertyKeyEntity skuPropertyKeyEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SKU_CATEGORY_ID", referencedColumnName = "id")
+    @JoinColumn(name = "sku_category_id", referencedColumnName = "id")
     private SkuCategoryEntity skuCategoryEntity;
 
 

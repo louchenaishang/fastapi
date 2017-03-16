@@ -16,22 +16,22 @@ public class SkuEntity {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "ID")
+    @Column(name = "id")
     protected String id;
 
-    @Column(name = "DELETED",columnDefinition = "int(1) default 0 comment'软删除标记'")
+    @Column(name = "deleted",columnDefinition = "int(1) default 0 comment'软删除标记'")
     protected Boolean deleted;
 
-    @Column(name = "CREATE_TIME", columnDefinition = "datetime comment'创建时间'")
+    @Column(name = "create_time", columnDefinition = "datetime comment'创建时间'")
     protected Date createTime;//创建时间
 
-    @Column(name = "UPDATE_TIME", columnDefinition = "datetime comment'更新时间'")
+    @Column(name = "update_time", columnDefinition = "datetime comment'更新时间'")
     protected Date updateTime;//更新时间
 
-    @Column(name = "CREATE_USER", columnDefinition = "varchar(255) comment'创建人id或者名称'")
+    @Column(name = "create_user", columnDefinition = "varchar(255) comment'创建人id或者名称'")
     protected String createUser;//创建人id或者名称
 
-    @Column(name = "UPDATE_USER", columnDefinition = "varchar(255) comment'更新人id或者名称'")
+    @Column(name = "update_user", columnDefinition = "varchar(255) comment'更新人id或者名称'")
     protected String updateUser;//更新人id或者名称
 
     @PrePersist
@@ -45,36 +45,36 @@ public class SkuEntity {
     }
 
     @Version
-    @Column(name = "VERSION", nullable = false)
+    @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @Column(name = "SKU_CODE", nullable = false, unique = true, columnDefinition = "varchar(255) comment'sku编码和外部系统交互使用'")
+    @Column(name = "sku_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'sku编码和外部系统交互使用'")
     private String skuCode;
 
-    @Column(name = "NAME", nullable = false, columnDefinition = "varchar(255) comment'名称'")
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(255) comment'名称'")
     private String name;
 
-    @Column(name = "SHOW_NAME", nullable = false, columnDefinition = "varchar(255) comment'前端显示名称'")
+    @Column(name = "show_name", nullable = false, columnDefinition = "varchar(255) comment'前端显示名称'")
     private String showName;
 
-    @Column(name = "IMAGE", nullable = true, columnDefinition = "varchar(255) comment'图片url'")
+    @Column(name = "image", nullable = true, columnDefinition = "varchar(255) comment'图片url'")
     private String image;
 
-    @Column(name = "CAN_AIR", nullable = true, columnDefinition = "int(1) comment'是否可以被空运'")
+    @Column(name = "can_air", nullable = true, columnDefinition = "int(1) comment'是否可以被空运'")
     private boolean canAir;
 
-    @Column(name = "CAN_LAND", nullable = true, columnDefinition = "int(1) comment'是否可以被陆运'")
+    @Column(name = "can_land", nullable = true, columnDefinition = "int(1) comment'是否可以被陆运'")
     private boolean canLand;
 
-    @Column(name = "COST", nullable = false, columnDefinition = "decimal(19,2) comment'成本'")
+    @Column(name = "cost", nullable = false, columnDefinition = "decimal(19,2) comment'成本'")
     private BigDecimal cost;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SKU_CATEGORY_ID", referencedColumnName = "id")
+    @JoinColumn(name = "sku_category_id", referencedColumnName = "id")
     private SkuCategoryEntity skuCategoryEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SKU_BRAND_ID", referencedColumnName = "id")
+    @JoinColumn(name = "sku_brand_id", referencedColumnName = "id")
     private SkuBrandEntity skuBrandEntity;
 
 

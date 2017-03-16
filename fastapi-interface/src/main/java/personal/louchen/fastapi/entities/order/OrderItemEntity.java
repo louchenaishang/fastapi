@@ -18,55 +18,58 @@ public class OrderItemEntity {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "ID")
+    @Column(name = "id")
     protected String id;
 
-    @Column(name = "DELETED", columnDefinition = "int(1) default 0 comment'软删除标记'")
+    @Column(name = "deleted", columnDefinition = "int(1) default 0 comment'软删除标记'")
     protected Boolean deleted;
 
     @Version
-    @Column(name = "VERSION", nullable = false)
+    @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private OrderEntity orderEntity;//订单id外键
 
-    @Column(name = "IS_GIFT", nullable = false, updatable = false, columnDefinition = "int(1) comment'是否赠品'")
-    private int isGift = 0;
+    @Column(name = "is_gift", nullable = false, updatable = false, columnDefinition = "int(1) comment'是否赠品'")
+    private Boolean isGift = false;
 
-    @Column(name = "SKU_NAME", nullable = false, updatable = false, columnDefinition = "varchar(255) comment'冗余skuName'")
+    @Column(name = "sku_name", nullable = false, updatable = false, columnDefinition = "varchar(255) comment'冗余skuName'")
     private String skuName;//冗余sku名称
 
-    @Column(name = "PRODUCT_ITEM_NAME", nullable = false, updatable = false, columnDefinition = "varchar(255) comment'冗余商品名称'")
-    private String productItemName;//冗余商品行名称
+    @Column(name = "sku_properties", nullable = false, updatable = false, columnDefinition = "varchar(5000) comment'冗余sku属性'")
+    private String skuProperties;//冗余sku属性
 
-    @Column(name = "QUANTITY", nullable = false, updatable = false, columnDefinition = "int(20) comment'购买数量'")
-    private int quantity;//购买数量
+    @Column(name = "product_name", nullable = false, updatable = false, columnDefinition = "varchar(255) comment'冗余商品名称'")
+    private String productName;//冗余商品名称
 
-    @Column(name = "UNIT_PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'购买时单价'")
+    @Column(name = "quantity", nullable = false, updatable = false, columnDefinition = "int(20) comment'购买数量'")
+    private Integer quantity;//购买数量
+
+    @Column(name = "unit_price", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'购买时单价'")
     private BigDecimal unitPrice;//购买时单价
 
-    @Column(name = "UNIT_POINT_AMOUNT", nullable = false, scale = 2, columnDefinition = "decimal(19,2) comment'单个积分抵扣金额'")
+    @Column(name = "unit_point_amount", nullable = false, scale = 2, columnDefinition = "decimal(19,2) comment'单个积分抵扣金额'")
     private BigDecimal unitPointAmount = BigDecimal.ZERO;//单个积分抵扣金额
 
-    @Column(name = "UNIT_COUPON_AMOUNT", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'单个抵扣优惠券优惠码金额'")
+    @Column(name = "unit_coupon_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'单个抵扣优惠券优惠码金额'")
     private BigDecimal unitCouponAmount = BigDecimal.ZERO;//单个抵扣优惠券优惠码金额
 
-    @Column(name = "UNIT_NEED_TO_PAY_AMOUNT", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'单个最终需支付金额'")
+    @Column(name = "unit_need_to_pay_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'单个最终需支付金额'")
     private BigDecimal unitNeedToPayAmount;//单个最终需支付
 
-    @Column(name = "REFUND_QUANTITY", nullable = false, updatable = true, columnDefinition = "int(20) comment'已退款数量'")
-    private int refundQuantity = 0;//已退款数量
+    @Column(name = "refund_quantity", nullable = false, updatable = true, columnDefinition = "int(20) comment'已退款数量'")
+    private Integer refundQuantity = 0;//已退款数量
 
-    @Column(name = "REFUND_AMOUNT", nullable = false, scale = 2, updatable = true, columnDefinition = "decimal(19,2) comment'已退款金额'")
+    @Column(name = "refund_amount", nullable = false, scale = 2, updatable = true, columnDefinition = "decimal(19,2) comment'已退款金额'")
     private BigDecimal refundAmount = BigDecimal.ZERO;//已退款金额
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SKU_ID", referencedColumnName = "id")
+    @JoinColumn(name = "sku_id", referencedColumnName = "id")
     private SkuEntity skuEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ITEM_ID", referencedColumnName = "id")
+    @JoinColumn(name = "product_item_id", referencedColumnName = "id")
     private ProductItemEntity productItemEntity;
 }
