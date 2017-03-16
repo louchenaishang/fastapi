@@ -2,6 +2,9 @@ package personal.louchen.fastapi.entities.product;
 
 import personal.louchen.fastapi.entities.BaseManagementEntity;
 import personal.louchen.fastapi.entities.location.ShippingTemplateEntity;
+import personal.louchen.fastapi.entities.product.enums.EvaluationType;
+import personal.louchen.fastapi.entities.product.enums.ProductType;
+import personal.louchen.fastapi.entities.product.enums.ShelvesType;
 import personal.louchen.fastapi.entities.sku.SkuCategoryEntity;
 
 import javax.persistence.*;
@@ -24,6 +27,14 @@ public class ProductEntity extends BaseManagementEntity {
     @Column(name = "product_type", nullable = false, columnDefinition = "varchar(255) comment'商品类型,详细见枚举类ProductType'")
     @Enumerated(EnumType.STRING)
     private ProductType productType;
+
+    @Column(name = "evaluation_type", nullable = false, columnDefinition = "varchar(255) comment'评价类型,详细见枚举类EvaluationType'")
+    @Enumerated(EnumType.STRING)
+    private EvaluationType evaluationType;
+
+    @Column(name = "shelves_type", nullable = false, columnDefinition = "varchar(255) comment'上下架类型,详细见枚举类ShelvesType'")
+    @Enumerated(EnumType.STRING)
+    private ShelvesType shelvesType;
 
     @Column(name = "name", nullable = false, columnDefinition = "varchar(255) comment'中文名称'")
     private String name;
@@ -60,6 +71,9 @@ public class ProductEntity extends BaseManagementEntity {
 
     @Column(name = "plan_send_time", nullable = true, columnDefinition = "datetime comment'计划发货时间'")
     private Date planSendTime;
+
+    @Column(name = "shelves_schedule_time", columnDefinition = "datetime comment'定时上下架时间'")
+    protected Date shelvesScheduleTime;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sku_category_id", referencedColumnName = "id")
