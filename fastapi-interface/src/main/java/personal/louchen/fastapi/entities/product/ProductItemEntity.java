@@ -38,8 +38,11 @@ public class ProductItemEntity extends BaseManagementEntity {
     @Column(name = "description", nullable = true, columnDefinition = "varchar(255) comment'描述'")
     private String description;
 
-    @Column(name = "period", nullable = false, columnDefinition = "int(10) default 1 comment'周期属性,计算订单拆分次数'")
+    @Column(name = "period", nullable = true, columnDefinition = "int(10) default 1 comment'周期属性,计算订单拆分次数'")
     private Integer period;
+
+    @Column(name = "period_text", nullable = true, columnDefinition = "varchar(255) comment'周期属性中文描述'")
+    private String periodText;
 
     @Column(name = "strategy_price_check", nullable = false, columnDefinition = "int(10) default 1 comment'价格策略,是否进行价格检查,商品保存时候检查商品价格是否大于sku成本,公式:商品价格/周期期数>sku成本'")
     private boolean strategyPriceCheck;
