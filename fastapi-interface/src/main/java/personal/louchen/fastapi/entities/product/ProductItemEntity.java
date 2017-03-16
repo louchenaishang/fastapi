@@ -54,6 +54,9 @@ public class ProductItemEntity {
     @Column(name = "PRODUCT_ITEM_CODE", nullable = false, unique = true, columnDefinition = "varchar(255) comment'商品行编码'")
     private String productItemCode;
 
+    @Column(name = "OUT_CODE", nullable = false, unique = true, columnDefinition = "varchar(255) comment'外部编码'")
+    private String outCode;
+
     @Column(name = "PRICE", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'销售单价'")
     private BigDecimal price;
 

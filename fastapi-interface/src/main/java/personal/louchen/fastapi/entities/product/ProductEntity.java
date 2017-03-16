@@ -54,6 +54,9 @@ public class ProductEntity {
     @Column(name = "PRODUCT_CODE", nullable = false, unique = true, columnDefinition = "varchar(255) comment'商品头编码'")
     private String productCode;
 
+    @Column(name = "OUT_CODE", nullable = false, unique = true, columnDefinition = "varchar(255) comment'外部编码'")
+    private String outCode;
+
     @Column(name = "PRODUCT_TYPE", nullable = false, columnDefinition = "varchar(255) comment'商品类型,详细见枚举类ProductType'")
     @Enumerated(EnumType.STRING)
     private ProductType productType;
@@ -103,10 +106,6 @@ public class ProductEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SKU_CATEGORY_ID", referencedColumnName = "id")
     private SkuCategoryEntity skuCategoryEntity;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_GROUP_ID", referencedColumnName = "id")
-    private ProductGroupEntity productGroupEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SHIPPING_TEMPLATE_ID", referencedColumnName = "id")
