@@ -1,16 +1,16 @@
-package personal.louchen.fastapi.entities.sku;
+package personal.louchen.fastapi.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by louchen on 2017/3/9.
+ * Created by louchen on 2017/3/16.
  */
-@Entity
-@Table(name = "ai_sku_property_key")
-public class SkuPropertyKeyEntity {
+@MappedSuperclass
+public class BaseManagementEntity implements Serializable {
 
     //#####################通用属性###########################
     @Id
@@ -19,7 +19,7 @@ public class SkuPropertyKeyEntity {
     @Column(name = "id")
     protected String id;
 
-    @Column(name = "deleted",columnDefinition = "int(1) default 0 comment'软删除标记'")
+    @Column(name = "deleted", columnDefinition = "int(1) default 0 comment'软删除标记'")
     protected Boolean deleted;
 
     @Column(name = "create_time", columnDefinition = "datetime comment'创建时间'")
@@ -40,7 +40,7 @@ public class SkuPropertyKeyEntity {
     }
 
     @PreUpdate
-    public void preUpdate(){
+    public void preUpdate() {
         updateTime = new Date();
     }
 
@@ -48,8 +48,5 @@ public class SkuPropertyKeyEntity {
     @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-
-    @Column(name = "name", nullable = false, unique = true, columnDefinition = "varchar(255) comment'属性名称'")
-    private String name;
 
 }
