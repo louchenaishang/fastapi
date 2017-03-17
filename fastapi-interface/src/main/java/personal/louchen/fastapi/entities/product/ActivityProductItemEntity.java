@@ -55,8 +55,8 @@ public class ActivityProductItemEntity {
     private ActivityEntity activityEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
-    private ProductItemEntity saleProductItemEntity;
+    @JoinColumn(name = "SALE_PRODUCT_SKU_ITEM_ID", referencedColumnName = "id")
+    private ProductSkuItemEntity saleProductSkuItemEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RULE_DISCOUNT_TIME_ID", referencedColumnName = "id")

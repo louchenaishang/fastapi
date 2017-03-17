@@ -58,7 +58,8 @@ public class GroupPurchaseNumItemEntity {
     private GroupPurchaseNumEntity groupPurchaseNumEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
-    private ProductItemEntity saleProductItemEntity;
+    @JoinColumn(name = "SALE_PRODUCT_SKU_ITEM_ID", referencedColumnName = "id")
+    private ProductSkuItemEntity saleProductSkuItemEntity;
+
 
 }

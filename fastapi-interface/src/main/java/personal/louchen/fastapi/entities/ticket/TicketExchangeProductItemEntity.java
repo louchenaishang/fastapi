@@ -2,7 +2,7 @@ package personal.louchen.fastapi.entities.ticket;
 
 
 import org.hibernate.annotations.GenericGenerator;
-import personal.louchen.fastapi.entities.product.ProductItemEntity;
+import personal.louchen.fastapi.entities.product.ProductSkuEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -58,5 +58,5 @@ public class TicketExchangeProductItemEntity implements java.io.Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SALE_PRODUCT_ITEM_ID", referencedColumnName = "id")
-    private ProductItemEntity saleProductItemEntity;
+    private ProductSkuEntity saleProductItemEntity;
 }

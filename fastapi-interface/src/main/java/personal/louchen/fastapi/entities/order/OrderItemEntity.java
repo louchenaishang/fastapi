@@ -1,7 +1,7 @@
 package personal.louchen.fastapi.entities.order;
 
 import org.hibernate.annotations.GenericGenerator;
-import personal.louchen.fastapi.entities.product.ProductItemEntity;
+import personal.louchen.fastapi.entities.product.ProductSkuItemEntity;
 import personal.louchen.fastapi.entities.sku.SkuEntity;
 
 import javax.persistence.*;
@@ -70,6 +70,7 @@ public class OrderItemEntity {
     private SkuEntity skuEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_item_id", referencedColumnName = "id")
-    private ProductItemEntity productItemEntity;
+    @JoinColumn(name = "product_sku_item_id", referencedColumnName = "id")
+    private ProductSkuItemEntity productSkuItemEntity;
+
 }
