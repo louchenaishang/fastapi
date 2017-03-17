@@ -21,11 +21,4 @@ public class ProductRulePeriodEntity extends BaseManagementEntity {
     @Column(name = "period_interval", nullable = false, columnDefinition = "int(10) default 7 comment'周期间隔单位是天计算订单发货日期'")
     private Integer periodInterval;
 
-    @Column(name = "abort_week", nullable = false, columnDefinition = "int(10) comment'截单周几计算首次发货日期'")
-    private Integer abortWeek;
-
-    @Column(name = "abort_hour", nullable = false, columnDefinition = "int(10) default 11 comment'截单24小时制的小时计算首次发货日期'")
-    private Integer abortHour;
-
-
 }
