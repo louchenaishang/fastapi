@@ -21,7 +21,7 @@ public class ProductEntity extends BaseManagementEntity {
     @Column(name = "product_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'商品头编码'")
     private String productCode;
 
-    @Column(name = "out_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'外部编码'")
+    @Column(name = "out_code", nullable = false, columnDefinition = "varchar(255) comment'外部编码'")
     private String outCode;
 
     @Column(name = "product_type", nullable = false, columnDefinition = "varchar(255) comment'商品类型,详细见枚举类ProductType'")
@@ -84,7 +84,7 @@ public class ProductEntity extends BaseManagementEntity {
     private ShippingTemplateEntity shippingTemplateEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rule_period_id", referencedColumnName = "id")
-    private ProductRulePeriodEntity rulePeriodEntity;
+    @JoinColumn(name = "product_rule_period_id", referencedColumnName = "id")
+    private ProductRulePeriodEntity productRulePeriodEntity;
 
 }

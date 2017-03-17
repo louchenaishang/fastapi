@@ -17,7 +17,7 @@ public class ProductItemEntity extends BaseManagementEntity {
     @Column(name = "product_item_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'商品行编码'")
     private String productItemCode;
 
-    @Column(name = "out_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'外部编码'")
+    @Column(name = "out_code", nullable = false, columnDefinition = "varchar(255) comment'外部编码'")
     private String outCode;
 
     @Column(name = "price", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'销售单价'")
