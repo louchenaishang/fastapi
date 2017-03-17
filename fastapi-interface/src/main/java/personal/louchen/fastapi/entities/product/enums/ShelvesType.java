@@ -1,6 +1,7 @@
 package personal.louchen.fastapi.entities.product.enums;
 
 /**
+ * 上下架类型
  * Created by louchen on 2017/3/16.
  */
 public enum ShelvesType {

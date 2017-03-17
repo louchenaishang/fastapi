@@ -1,6 +1,7 @@
 package personal.louchen.fastapi.entities.product.enums;
 
 /**
+ * 商品类型
  * Created by louchen on 17/03/13.
  */
 public enum ProductType{

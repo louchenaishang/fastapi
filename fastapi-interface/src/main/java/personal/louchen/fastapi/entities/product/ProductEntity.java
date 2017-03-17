@@ -3,6 +3,7 @@ package personal.louchen.fastapi.entities.product;
 import personal.louchen.fastapi.entities.BaseManagementEntity;
 import personal.louchen.fastapi.entities.location.ShippingTemplateEntity;
 import personal.louchen.fastapi.entities.product.enums.EvaluationType;
+import personal.louchen.fastapi.entities.product.enums.PeriodType;
 import personal.louchen.fastapi.entities.product.enums.ProductType;
 import personal.louchen.fastapi.entities.product.enums.ShelvesType;
 import personal.louchen.fastapi.entities.sku.SkuCategoryEntity;
@@ -66,8 +67,15 @@ public class ProductEntity extends BaseManagementEntity {
     @Column(name = "enable_couponcode_deduction", nullable = true, columnDefinition = "int(1) default 0 comment'启用使用优惠码抵扣'")
     private boolean enableCouponCodeDeduction;
 
-    @Column(name = "enable_period", nullable = true, columnDefinition = "int(1) default 0 comment'允许选择周期购规则'")
-    private boolean enablePeriod;
+    @Column(name = "enable_turn", nullable = true, columnDefinition = "int(1) default 0 comment'是否转单'")
+    private boolean enableTurn;
+
+    @Column(name = "period_type", nullable = false, columnDefinition = "varchar(255) comment'周期类型,详细见枚举类PeriodType'")
+    @Enumerated(EnumType.STRING)
+    private PeriodType periodType;
+
+    @Column(name = "unfixed_period_formula", nullable = true, columnDefinition = "varchar(255) comment'不固定周期购计算公式'")
+    private String unfixedPeriodFormula;
 
     @Column(name = "plan_send_time", nullable = true, columnDefinition = "datetime comment'计划发货时间'")
     private Date planSendTime;
