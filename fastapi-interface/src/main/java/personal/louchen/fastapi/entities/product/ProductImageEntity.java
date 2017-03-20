@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "ai_product_image")
 public class ProductImageEntity extends BaseManagementEntity {
 
-    @Column(name = "url", nullable = false, unique = true, columnDefinition = "varchar(255) comment'商品头信息图片url'")
+    @Column(name = "url", nullable = false, columnDefinition = "varchar(255) comment'商品头信息图片url'")
     private String url;
 
     @OneToOne(fetch = FetchType.LAZY)
