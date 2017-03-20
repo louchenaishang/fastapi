@@ -46,12 +46,6 @@ public class ProductEntity extends BaseManagementEntity {
     @Column(name = "description", nullable = true, columnDefinition = "varchar(255) comment'描述'")
     private String description;
 
-    @Column(name = "html", nullable = true, columnDefinition = "varchar(5000) comment'商品详情普通屏幕'")
-    private String html;
-
-    @Column(name = "html_small", nullable = true, columnDefinition = "varchar(5000) comment'商品详情小屏幕'")
-    private String htmlSmall;
-
     @Column(name = "buy_memberlevel", nullable = true, columnDefinition = "varchar(255) comment'购买会员等级限制'")
     private String buyMemberLevel;
 
