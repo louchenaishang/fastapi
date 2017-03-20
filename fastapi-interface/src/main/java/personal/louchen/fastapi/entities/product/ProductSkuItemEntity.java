@@ -13,12 +13,6 @@ import java.math.BigDecimal;
 @Table(name = "ai_product_sku_item")
 public class ProductSkuItemEntity extends BaseManagementEntity {
 
-    @Column(name = "product_sku_item_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'商品行编码'")
-    private String productSkuItemCode;
-
-    @Column(name = "out_code", nullable = false, columnDefinition = "varchar(255) comment'外部编码'")
-    private String outCode;
-
     @Column(name = "price", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) default 0.00 comment'销售单价'")
     private BigDecimal price;
 
