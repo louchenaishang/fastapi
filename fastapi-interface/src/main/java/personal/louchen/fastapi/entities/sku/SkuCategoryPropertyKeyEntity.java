@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "ai_sku_category_property_key")
 public class SkuCategoryPropertyKeyEntity extends BaseManagementEntity {
 
-    @Column(name = "name", nullable = false, unique = true, columnDefinition = "varchar(255) comment'属性名称'")
+    @Column(name = "name", nullable = false, columnDefinition = "varchar(255) comment'属性名称'")
     private String name;
 
     @Column(name = "sorts", nullable = false, columnDefinition = "int(10) comment'排序值'")
