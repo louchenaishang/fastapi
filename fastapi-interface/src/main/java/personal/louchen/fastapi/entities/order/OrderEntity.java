@@ -31,6 +31,9 @@ public class OrderEntity {
     @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
+    @Column(name = "order_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'订单编码'")
+    private String orderCode;
+
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, columnDefinition = "varchar(255) comment '用户id,外键'")
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private UserEntity userEntity;//用户 id外键

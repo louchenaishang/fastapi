@@ -45,7 +45,10 @@ public class OrderPayLogEntity {
     @Column(name = "pay_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'支付金额'")
     private BigDecimal payAmount;//支付金额
 
-    @Column(name = "out_trade_no", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'外部系统交易单号,微信交易流水号、支付宝交易流水号'")
+    @Column(name = "trade_no", nullable = true, updatable = false, unique = true,columnDefinition = "varchar(255) comment'内部系统交易流水号'")
+    private String tradeNo;//内部系统交易流水号
+
+    @Column(name = "out_trade_no", nullable = true, updatable = false, unique = true,columnDefinition = "varchar(255) comment'外部系统交易单号,微信交易流水号、支付宝交易流水号'")
     private String outTradeNo;//外部系统交易单号,微信交易流水号、支付宝交易流水号
 
 }

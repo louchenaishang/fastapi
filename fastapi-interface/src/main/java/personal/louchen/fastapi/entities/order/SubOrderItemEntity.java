@@ -47,6 +47,9 @@ public class SubOrderItemEntity {
     @Column(name = "quantity", nullable = false, updatable = false, columnDefinition = "int(20) comment'购买数量'")
     private Integer quantity;//购买数量
 
+    @Column(name = "quantity_delivery", nullable = false, updatable = false, columnDefinition = "int(20) comment'配送数量'")
+    private Integer quantityDelivery;//配送数量
+
     @Column(name = "unit_price", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'购买时单价'")
     private BigDecimal unitPrice;//购买时单价
 

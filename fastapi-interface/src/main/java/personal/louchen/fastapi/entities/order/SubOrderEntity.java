@@ -39,6 +39,9 @@ public class SubOrderEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private UserEntity userEntity;//用户 id外键
 
+    @Column(name = "sub_order_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'子订单编码'")
+    private String subOrderCode;
+
     @Column(name = "out_trade_code", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'外部订单号,如天猫、京东、一号店,这样不会重复导入外部订单'")
     private String outTradeCode;//外部订单号,如天猫、京东、一号店,这样不会重复导入外部订单
 
