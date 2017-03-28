@@ -34,6 +34,9 @@ public class OrderEntity {
     @Column(name = "order_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'订单编码'")
     private String orderCode;
 
+    @Column(name = "out_trade_code", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'外部订单号,如天猫、京东、一号店,这样不会重复导入外部订单'")
+    private String outTradeCode;//外部订单号,如天猫、京东、一号店,这样不会重复导入外部订单
+
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, columnDefinition = "varchar(255) comment '用户id,外键'")
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private UserEntity userEntity;//用户 id外键

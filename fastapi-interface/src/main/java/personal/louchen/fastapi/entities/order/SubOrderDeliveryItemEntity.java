@@ -12,8 +12,8 @@ import java.math.BigDecimal;
  * Created by louchen on 16/9/8.
  */
 @Entity
-@Table(name = "ai_sub_order_item")
-public class SubOrderItemEntity {
+@Table(name = "ai_sub_order_delivery_item")
+public class SubOrderDeliveryItemEntity {
     //#####################通用属性###########################
     @Id
     @GeneratedValue(generator = "uuid")
@@ -28,9 +28,9 @@ public class SubOrderItemEntity {
     @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @JoinColumn(name = "sub_order_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "sub_order_delivery_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
-    private SubOrderEntity subOrderEntity;//子订单id外键
+    private SubOrderDeliveryEntity subOrderDeliveryEntity;//子订单的配送单的id外键
 
     @Column(name = "is_gift", nullable = false, updatable = false, columnDefinition = "int(1) comment'是否赠品'")
     private Boolean isGift = false;
