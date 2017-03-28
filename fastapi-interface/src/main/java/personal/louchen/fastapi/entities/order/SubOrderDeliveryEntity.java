@@ -10,8 +10,8 @@ import java.util.Date;
  * Created by louchen on 16/9/8.
  */
 @Entity
-@Table(name = "ai_order_delivery")
-public class OrderDeliveryEntity {
+@Table(name = "ai_sub_order_delivery")
+public class SubOrderDeliveryEntity {
     //#####################通用属性###########################
     @Id
     @GeneratedValue(generator = "uuid")
@@ -26,9 +26,9 @@ public class OrderDeliveryEntity {
     @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = true)
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
-    private OrderEntity orderEntity;//订单id外键
+    @JoinColumn(name = "sub_order_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    private SubOrderEntity subOrderEntity;//子订单id外键
 
     @Column(name = "is_subscription", nullable = false, columnDefinition = "int(1) comment'是否订阅类,0否、1是'")
     private int isSubscription;//是否订阅类

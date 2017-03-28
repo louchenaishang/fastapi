@@ -27,9 +27,9 @@ public class OrderRefundLogEntity {
     @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @JoinColumn(name = "order_group_id", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "ID", nullable = false)
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
-    private OrderGroupEntity orderGroupEntity;//订单id外键
+    private OrderEntity orderEntity;//订单id外键
 
     @Column(name = "payment", nullable = false, updatable = false, columnDefinition = "int(1) comment'支付方式 1微信 2支付宝'")
     private int payment;//支付方式 1微信 2支付宝
