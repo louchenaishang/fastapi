@@ -42,9 +42,6 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private OrderSplitStatus orderSplitStatus;//订单拆分状态
 
-    @Column(name = "order_phone", nullable = false, columnDefinition = "varchar(255) comment'订货人手机号'")
-    private String orderPhone;
-
     @Column(name = "create_time", nullable = true, columnDefinition = "datetime comment '创建时间'")
     private Date createTime;
 
@@ -67,7 +64,23 @@ public class OrderEntity {
     @Column(name = "refund_amount", nullable = false, scale = 2, updatable = true, columnDefinition = "decimal(19,2) comment'已退款金额'")
     private BigDecimal refundAmount = BigDecimal.ZERO;//冗余已退款金额
 
+    @Column(name = "district_id", nullable = false, columnDefinition = "int(20) comment'省市区id'")
+    private int districtId;//冗余收货地址省市区
+
+    @Column(name = "address", nullable = false, columnDefinition = "varchar(255) comment'收货地址'")
+    private String address;//冗余收货地址
+
+    @Column(name = "receiver", nullable = false, columnDefinition = "varchar(255) comment'收货人'")
+    private String receiver;//冗余收货人
+
+    @Column(name = "receiver_phone", nullable = false, columnDefinition = "varchar(255) comment'收货人手机号码'")
+    private String receiverPhone;//冗余收货人手机号码
+
+    @Column(name = "order_phone", nullable = false, columnDefinition = "varchar(255) comment'订货人手机号'")
+    private String orderPhone;//订货人手机号码
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channel_id", referencedColumnName = "id")
     private ChannelEntity channelEntity;
+
 }
