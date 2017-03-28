@@ -8,12 +8,12 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * 订单商品实体
+ * 子订单商品实体
  * Created by louchen on 16/9/8.
  */
 @Entity
-@Table(name = "ai_order_item")
-public class OrderItemEntity {
+@Table(name = "ai_sub_order_item")
+public class SubOrderItemEntity {
     //#####################通用属性###########################
     @Id
     @GeneratedValue(generator = "uuid")
@@ -28,9 +28,9 @@ public class OrderItemEntity {
     @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "sub_order_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
-    private OrderEntity orderEntity;//订单id外键
+    private SubOrderEntity subOrderEntity;//子订单id外键
 
     @Column(name = "is_gift", nullable = false, updatable = false, columnDefinition = "int(1) comment'是否赠品'")
     private Boolean isGift = false;

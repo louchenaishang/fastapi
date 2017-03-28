@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * 子订单商品实体
+ * 发货单商品实体
  * Created by louchen on 16/9/8.
  */
 @Entity
