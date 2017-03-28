@@ -3,7 +3,7 @@ package personal.louchen.fastapi.entities.order.enums;
 /**
  * Created by louchen on 2017/3/28.
  */
-public enum SubOrderStatus {
+public enum SubOrderDeliveryStatus {
 
     CANCELED,//已取消
     NEEDPAY,//待付款

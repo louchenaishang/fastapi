@@ -79,8 +79,14 @@ public class OrderEntity {
     @Column(name = "receiver_phone", nullable = false, columnDefinition = "varchar(255) comment'收货人手机号码'")
     private String receiverPhone;//冗余收货人手机号码
 
-    @Column(name = "order_phone", nullable = false, columnDefinition = "varchar(255) comment'订货人手机号'")
-    private String orderPhone;//订货人手机号码
+    @Column(name = "buyer_phone", nullable = false, columnDefinition = "varchar(255) comment'订货人手机号'")
+    private String buyerPhone;//订货人手机号码
+
+    @Column(name = "buyer_remark", nullable = true, columnDefinition = "varchar(255) comment'买家备注'")
+    private String buyerRemark;//买家备注
+
+    @Column(name = "internal_remark", nullable = true, columnDefinition = "varchar(255) comment'内部备注'")
+    private String internalRemark;//内部备注
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channel_id", referencedColumnName = "id")

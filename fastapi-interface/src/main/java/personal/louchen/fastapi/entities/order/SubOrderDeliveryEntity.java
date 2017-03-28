@@ -1,7 +1,7 @@
 package personal.louchen.fastapi.entities.order;
 
 import org.hibernate.annotations.GenericGenerator;
-import personal.louchen.fastapi.entities.order.enums.SubOrderStatus;
+import personal.louchen.fastapi.entities.order.enums.SubOrderDeliveryStatus;
 import personal.louchen.fastapi.entities.user.UserEntity;
 
 import javax.persistence.*;
@@ -42,12 +42,11 @@ public class SubOrderDeliveryEntity {
     @Column(name = "sub_order_delivery_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'发货单编码'")
     private String subOrderDeliveryCode;
 
-    @Column(name = "sub_order_status", nullable = false, columnDefinition = "varchar(255) comment'子订单状态,详细见枚举类SubOrderStatus'")
+    @Column(name = "sub_order_delivery_status", nullable = false, columnDefinition = "varchar(255) comment'子订单状态,详细见枚举类SubOrderStatus'")
     @Enumerated(EnumType.STRING)
-    private SubOrderStatus subOrderStatus;//子订单状态
+    private SubOrderDeliveryStatus subOrderDeliveryStatus;//子订单状态
 
     //子订单信息
-
     @Column(name = "create_time", nullable = false, updatable = false, columnDefinition = "datetime comment'子订单创建时间'")
     private Date createTime;//订单创建时间
 
@@ -84,14 +83,8 @@ public class SubOrderDeliveryEntity {
     @Column(name = "refund_amount", nullable = false, scale = 2, columnDefinition = "decimal(19,2) comment'已退款金额'")
     private BigDecimal refundAmount = BigDecimal.ZERO;//已退款金额
 
-    @Column(name = "user_remark", nullable = true, columnDefinition = "varchar(255) comment'买家备注'")
-    private String userRemark;//购买者备注
-
-    @Column(name = "operation_remark", nullable = true, columnDefinition = "varchar(255) comment'运营备注'")
-    private String operationRemark;//运营备注
-
-    @Column(name = "cs_remark", nullable = true, columnDefinition = "varchar(255) comment'客服备注'")
-    private String csRemark;//客服备注
+    @Column(name = "remark", nullable = true, columnDefinition = "varchar(255) comment'发货单备注'")
+    private String remark;//发货单备注
 
     //收货信息
 
