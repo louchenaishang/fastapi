@@ -1,6 +1,7 @@
 package personal.louchen.fastapi.entities.order;
 
 import org.hibernate.annotations.GenericGenerator;
+import personal.louchen.fastapi.entities.order.enums.SubOrderStatus;
 import personal.louchen.fastapi.entities.user.UserEntity;
 
 import javax.persistence.*;
@@ -30,9 +31,9 @@ public class SubOrderEntity {
     @Column(name = "version", nullable = false)
     private long version = 0;//数据版本
     //########################################################
-    @JoinColumn(name = "order_group_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
-    private OrderEntity orderGroupEntity;//订单组 id外键盘
+    private OrderEntity orderEntity;//订单id外键
 
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
@@ -41,23 +42,15 @@ public class SubOrderEntity {
     @Column(name = "out_trade_code", nullable = true, updatable = false, columnDefinition = "varchar(255) comment'外部订单号,如天猫、京东、一号店,这样不会重复导入外部订单'")
     private String outTradeCode;//外部订单号,如天猫、京东、一号店,这样不会重复导入外部订单
 
-    @Column(name = "status", nullable = false, columnDefinition = "int(3) comment'订单状态,0取消、1未付款、2已付款、3审单状态、4审单挂起、5仓库处理中、6物流配送中、7已收货'")
-    private int status;//订单状态,0取消、1未付款、2已付款、3审单状态、4审单挂起、5仓库处理中、6物流配送中、7已收货
+    @Column(name = "sub_order_status", nullable = false, columnDefinition = "varchar(255) comment'子订单状态,详细见枚举类SubOrderStatus'")
+    @Enumerated(EnumType.STRING)
+    private SubOrderStatus subOrderStatus;//子订单状态
 
-    @Column(name = "type", nullable = false, updatable = false, columnDefinition = "int(1) comment'订单类型,1订阅鲜花单品 2订阅鲜花混搭 3快递 4闪购'")
-    private int type;//订单类型,1订阅鲜花单品 2订阅鲜花混搭 3快递 4闪购
-
-    @Column(name = "create_time", nullable = false, updatable = false, columnDefinition = "datetime comment'订单创建时间'")
+    @Column(name = "create_time", nullable = false, updatable = false, columnDefinition = "datetime comment'子订单创建时间'")
     private Date createTime;//订单创建时间
 
-    @Column(name = "cancel_time", nullable = true, columnDefinition = "datetime comment'订单取消时间'")
-    private Date cancelTime;//订单取消时间
-
-    @Column(name = "pay_time", nullable = true, columnDefinition = "datetime comment'订单支付时间'")
-    private Date payTime;//订单支付时间
-
-    @Column(name = "payment", nullable = true, columnDefinition = "int(1) comment'订单支付方式,0未支付 1微信 2支付宝 3全额抵扣'")
-    private int payment;//订单支付方式,0未支付 1微信 2支付宝 3全额抵扣
+    @Column(name = "cancel_time", nullable = true, columnDefinition = "datetime comment'子订单取消时间'")
+    private Date cancelTime;//订单关闭时间
 
     @Column(name = "total_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'订单金额,未折扣、未积分抵扣、未优惠券抵扣'")
     private BigDecimal totalAmount;//订单金额,未折扣、未积分抵扣、未优惠券抵扣,mock订单金额100元

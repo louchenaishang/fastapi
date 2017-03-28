@@ -2,6 +2,8 @@ package personal.louchen.fastapi.entities.order;
 
 import org.hibernate.annotations.GenericGenerator;
 import personal.louchen.fastapi.entities.channel.ChannelEntity;
+import personal.louchen.fastapi.entities.order.enums.OrderSplitStatus;
+import personal.louchen.fastapi.entities.order.enums.OrderStatus;
 import personal.louchen.fastapi.entities.user.UserEntity;
 
 import javax.persistence.*;
@@ -9,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 订单组
+ * 订单
  * Created by louchen on 16/9/8.
  */
 @Entity
@@ -33,14 +35,25 @@ public class OrderEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private UserEntity userEntity;//用户 id外键
 
-    @Column(name = "split_status", nullable = false, columnDefinition = "int(1) default 0 comment '拆分状态'")
-    private int splitStatus;//0未拆分,1已拆分
+    @Column(name = "order_split_status", nullable = false, columnDefinition = "varchar(255) comment'订单拆分状态,详细见枚举类OrderSplitStatus'")
+    @Enumerated(EnumType.STRING)
+    private OrderSplitStatus orderSplitStatus;//订单拆分状态
+
+    @Column(name = "order_phone", nullable = false, columnDefinition = "varchar(255) comment'订货人手机号'")
+    private String orderPhone;
 
     @Column(name = "create_time", nullable = true, columnDefinition = "datetime comment '创建时间'")
     private Date createTime;
 
-    @Column(name = "status", nullable = false, columnDefinition = "int(1) comment '订单组状态,0取消、1未付款、2已付款'")
-    private int status;//订单组状态,0取消、1未付款、2已付款
+    @Column(name = "pay_time", nullable = true, columnDefinition = "datetime comment '付款时间'")
+    private Date payTime;
+
+    @Column(name = "cancel_time", nullable = true, columnDefinition = "datetime comment '取消时间'")
+    private Date cancelTime;
+
+    @Column(name = "order_status", nullable = false, columnDefinition = "varchar(255) comment'订单状态,详细见枚举类OrderStatus'")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     @Column(name = "total_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment '冗余所有订单金额'")
     private BigDecimal totalAmount;//冗余所有 订单金额

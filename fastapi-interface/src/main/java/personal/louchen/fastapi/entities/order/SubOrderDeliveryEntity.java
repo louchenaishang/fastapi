@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 订单配送信息
+ * 子订单配送信息
  * Created by louchen on 16/9/8.
  */
 @Entity
@@ -30,9 +30,6 @@ public class SubOrderDeliveryEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private SubOrderEntity subOrderEntity;//子订单id外键
 
-    @Column(name = "is_subscription", nullable = false, columnDefinition = "int(1) comment'是否订阅类,0否、1是'")
-    private int isSubscription;//是否订阅类
-
     @Column(name = "district_id", nullable = false, columnDefinition = "int(20) comment'省市区id'")
     private int districtId;
 
@@ -48,20 +45,17 @@ public class SubOrderDeliveryEntity {
     @Column(name = "receiver_phone", nullable = false, columnDefinition = "varchar(255) comment'收货人手机号码'")
     private String receiverPhone;//收货人手机号码
 
-    @Column(name = "delivery_type", nullable = true, columnDefinition = "int(2) comment'快递类型,1顺发、2联邦、3万象'")
-    private int deliveryType;//快递类型
+    @Column(name = "delivery_company_code", nullable = true, columnDefinition = "varchar(255) comment'快递公司code,SF=顺丰'")
+    private int deliveryCompanyCode;//快递类型
 
-    @Column(name = "delivery_code", nullable = true, columnDefinition = "varchar(255) comment'快递单号'")
-    private String deliveryCode;//快递单号
+    @Column(name = "delivery_company_name", nullable = true, columnDefinition = "varchar(255) comment'快递公司名称'")
+    private int deliveryCompanyType;//快递类型
+
+    @Column(name = "delivery_code", nullable = true, columnDefinition = "varchar(255) comment'快递物流单号'")
+    private String deliveryCode;//快递物流单号
 
     @Column(name = "peroid", nullable = true, columnDefinition = "int(3) comment'第几期配送'")
     private int period;//第几期
-
-    @Column(name = "send_week", nullable = true, columnDefinition = "int(1) comment'周几配送'")
-    private int sendWeek;//周几配送
-
-    @Column(name = "create_time", nullable = true, columnDefinition = "datetime comment'创建时间'")
-    private Date createTime;//创建时间
 
     @Column(name = "plan_receipt_time", nullable = true, columnDefinition = "datetime comment'计划收货时间'")
     private Date planReceiptTime;//计划收货时间

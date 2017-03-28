@@ -63,8 +63,8 @@ public class TicketExchangeItemEntity implements java.io.Serializable {
     @Column(name = "USE_TIME", columnDefinition = "datetime comment'使用时间'")
     protected Date useTime;
 
-    @Column(name = "ORDER_GROUP_ID")
-    private String orderGroupId;
+    @Column(name = "ORDER_ID")
+    private String orderId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TICKET_EXCHANGE_ID", referencedColumnName = "id")

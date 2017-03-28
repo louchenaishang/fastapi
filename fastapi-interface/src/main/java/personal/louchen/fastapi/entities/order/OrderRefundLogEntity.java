@@ -1,6 +1,7 @@
 package personal.louchen.fastapi.entities.order;
 
 import org.hibernate.annotations.GenericGenerator;
+import personal.louchen.fastapi.entities.order.enums.Payment;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -31,8 +32,9 @@ public class OrderRefundLogEntity {
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private OrderEntity orderEntity;//订单id外键
 
-    @Column(name = "payment", nullable = false, updatable = false, columnDefinition = "int(1) comment'支付方式 1微信 2支付宝'")
-    private int payment;//支付方式 1微信 2支付宝
+    @Column(name = "payment", nullable = false, updatable = false, columnDefinition = "varchar(255) comment'付款方式,详细见枚举类Payment'")
+    @Enumerated(EnumType.STRING)
+    private Payment payment;//支付方式
 
     @Column(name = "refund_time", nullable = false, updatable = false, columnDefinition = "datetime comment'支付时间'")
     private Date refundTime;//退款时间
