@@ -62,12 +62,6 @@ public class SubOrderDeliveryItemEntity {
     @Column(name = "unit_need_to_pay_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment'单个最终需支付金额'")
     private BigDecimal unitNeedToPayAmount;//单个最终需支付
 
-    @Column(name = "refund_quantity", nullable = false, updatable = true, columnDefinition = "int(20) comment'已退款数量'")
-    private Integer refundQuantity = 0;//已退款数量
-
-    @Column(name = "refund_amount", nullable = false, scale = 2, updatable = true, columnDefinition = "decimal(19,2) comment'已退款金额'")
-    private BigDecimal refundAmount = BigDecimal.ZERO;//已退款金额
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sku_id", referencedColumnName = "id")
     private SkuEntity skuEntity;
@@ -75,5 +69,8 @@ public class SubOrderDeliveryItemEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_sku_item_id", referencedColumnName = "id")
     private ProductSkuItemEntity productSkuItemEntity;
+
+    @Column(name = "flower_id", nullable = false, columnDefinition = "varchar(255) comment'花材id'")
+    private String flowerId;//花材id
 
 }

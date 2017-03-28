@@ -62,7 +62,7 @@ public class OrderEntity {
     private BigDecimal totalAmount;//冗余所有 订单金额
 
     @Column(name = "need_to_pay_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment '冗余所有订单最终需支付金额'")
-    private BigDecimal needToPayAmount;//冗余所有 订单最终需支付的金额
+    private BigDecimal needToPayAmount;//冗余所有子订单最终需支付的金额
 
     @Column(name = "refund_amount", nullable = false, scale = 2, updatable = true, columnDefinition = "decimal(19,2) comment'已退款金额'")
     private BigDecimal refundAmount = BigDecimal.ZERO;//冗余已退款金额

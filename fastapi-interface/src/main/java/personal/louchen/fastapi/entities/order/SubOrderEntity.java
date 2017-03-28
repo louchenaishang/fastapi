@@ -37,8 +37,11 @@ public class SubOrderEntity {
     @Column(name = "sorts", nullable = false, columnDefinition = "int(10) comment'排序值'")
     private Integer sorts;
 
+    @Column(name = "need_to_pay_amount", nullable = false, scale = 2, updatable = false, columnDefinition = "decimal(19,2) comment '冗余所有订单最终需支付金额'")
+    private BigDecimal needToPayAmount;//子订单最终需支付的金额
+
     @Column(name = "refund_amount", nullable = false, scale = 2, updatable = true, columnDefinition = "decimal(19,2) comment'已退款金额'")
-    private BigDecimal refundAmount = BigDecimal.ZERO;//冗余已退款金额
+    private BigDecimal refundAmount = BigDecimal.ZERO;//子订单已退款金额
 
 
 }

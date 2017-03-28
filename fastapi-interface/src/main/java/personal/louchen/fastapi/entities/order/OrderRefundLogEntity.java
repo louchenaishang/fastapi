@@ -32,6 +32,10 @@ public class OrderRefundLogEntity {
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private OrderEntity orderEntity;//订单id外键
 
+    @JoinColumn(name = "sub_order_id", referencedColumnName = "ID", nullable = false)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
+    private SubOrderEntity subOrderEntity;//子订单id外键
+
     @Column(name = "payment", nullable = false, updatable = false, columnDefinition = "varchar(255) comment'付款方式,详细见枚举类Payment'")
     @Enumerated(EnumType.STRING)
     private Payment payment;//支付方式
