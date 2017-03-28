@@ -73,4 +73,10 @@ public class SubOrderDeliveryItemEntity {
     @Column(name = "flower_id", nullable = false, columnDefinition = "varchar(255) comment'花材id'")
     private String flowerId;//花材id
 
+    @Column(name = "period", nullable = true, columnDefinition = "int(10) default 1 comment'周期属性,计算发货单属于第几期'")
+    private Integer period;
+
+
+
+
 }
