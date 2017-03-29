@@ -1,6 +1,7 @@
 package personal.louchen.fastapi.entities.order;
 
 import org.hibernate.annotations.GenericGenerator;
+import personal.louchen.fastapi.entities.order.enums.SubOrderDeliveryCreator;
 import personal.louchen.fastapi.entities.order.enums.SubOrderDeliveryStatus;
 import personal.louchen.fastapi.entities.user.UserEntity;
 
@@ -39,12 +40,19 @@ public class SubOrderDeliveryEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH})
     private UserEntity userEntity;//用户 id外键
 
+    @Column(name = "from_sub_order_delivery_code", nullable = false, columnDefinition = "varchar(255) comment'来源发货单编码'")
+    private String fromSubOrderDeliveryCode;
+
     @Column(name = "sub_order_delivery_code", nullable = false, unique = true, columnDefinition = "varchar(255) comment'发货单编码'")
     private String subOrderDeliveryCode;
 
     @Column(name = "sub_order_delivery_status", nullable = false, columnDefinition = "varchar(255) comment'子订单状态,详细见枚举类SubOrderStatus'")
     @Enumerated(EnumType.STRING)
-    private SubOrderDeliveryStatus subOrderDeliveryStatus;//子订单状态
+    private SubOrderDeliveryStatus subOrderDeliveryStatus;//子订单的发货单的状态
+
+    @Column(name = "sub_order_delivery_status", nullable = false, columnDefinition = "varchar(255) comment'子订单状态,详细见枚举类SubOrderStatus'")
+    @Enumerated(EnumType.STRING)
+    private SubOrderDeliveryCreator subOrderDeliveryCreator;//子子订单的发货单的创建者
 
     //子订单信息
     @Column(name = "create_time", nullable = false, updatable = false, columnDefinition = "datetime comment'子订单创建时间'")
