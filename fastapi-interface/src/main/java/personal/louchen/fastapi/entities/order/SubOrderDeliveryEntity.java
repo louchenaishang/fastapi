@@ -123,6 +123,9 @@ public class SubOrderDeliveryEntity {
     @Column(name = "peroid", nullable = true, columnDefinition = "int(3) comment'第几期配送'")
     private int period;//第几期
 
+    @Column(name = "receiptOneWeek", nullable = true, columnDefinition = "int(3) comment'周几收'")
+    private int receiptOneWeek;//周几收
+
     @Column(name = "plan_receipt_time", nullable = true, columnDefinition = "datetime comment'计划收货时间'")
     private Date planReceiptTime;//计划收货时间
 
